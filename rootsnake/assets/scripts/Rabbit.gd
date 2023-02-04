@@ -3,6 +3,8 @@ extends Area2D
 
 var random = RandomNumberGenerator.new()
 var tilemap = "../TileMap"
+var snakehead = "../SnakeHead"
+onready var sprite = $Sprite
 
 var horizontal_direction = 0
 var direction = -1
@@ -37,9 +39,11 @@ func turn():
 		cell_position.x -= 1
 		if horizontal_direction == 1 and get_node(tilemap).get_cellv( cell_position ) == -1:
 			direction = 3
+			sprite.scale.x = -2.5
 		cell_position.x += 2
 		if horizontal_direction == 2 and get_node(tilemap).get_cellv( cell_position ) == -1:
 			direction = 1
+			sprite.scale.x = 2.5
 
 func move():
 	if direction == 2:
@@ -55,3 +59,8 @@ func move():
 		position.y = int(position.y)
 		moving = false
 		direction = -1
+
+
+func _on_Rabbit_area_entered(area):
+	if "Snake" in area.name:
+		get_node(snakehead).queue_free()

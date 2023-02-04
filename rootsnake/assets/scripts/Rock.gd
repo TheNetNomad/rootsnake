@@ -72,3 +72,5 @@ func _on_FallOnArea_area_entered(area):
 	elif "Rock" in area.name:
 		begin_break()
 		area.begin_break()
+	elif "Rabbit" in area.name:
+		area.queue_free()
