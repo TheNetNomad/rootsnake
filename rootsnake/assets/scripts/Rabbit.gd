@@ -5,7 +5,7 @@ var random = RandomNumberGenerator.new()
 var tilemap = "../TileMap"
 
 var horizontal_direction = 0
-var direction = 2
+var direction = -1
 var moving = false
 
 const TILE_SIZE = 64
@@ -29,9 +29,16 @@ func turn():
 
 	else:
 		horizontal_direction = random.randi_range(1,2)
-		if horizontal_direction == 1 and get_node(tilemap).get_cell( (position.x/TILE_SIZE)-1 , (position.y/TILE_SIZE) ) == -1:
+		var local_position:Vector2 = get_node(tilemap).to_local(position)
+		var cell_position:Vector2 = local_position/get_node(tilemap).cell_size
+
+#		print(get_node(tilemap).get_cellv( cell_position ))
+
+		cell_position.x -= 1
+		if horizontal_direction == 1 and get_node(tilemap).get_cellv( cell_position ) == -1:
 			direction = 3
-		elif horizontal_direction == 2 and get_node(tilemap).get_cell( (position.x/TILE_SIZE)+1 , (position.y/TILE_SIZE) ) == -1:
+		cell_position.x += 2
+		if horizontal_direction == 2 and get_node(tilemap).get_cellv( cell_position ) == -1:
 			direction = 1
 
 func move():
@@ -47,3 +54,4 @@ func move():
 		position.x = int(position.x)
 		position.y = int(position.y)
 		moving = false
+		direction = -1
