@@ -22,3 +22,12 @@ func _on_StartButton_pressed():
 
 func _on_QuitButton_pressed():
 	get_tree().quit()
+
+
+func _on_CreditsButton_pressed():
+	var credits = get_node("CreditsButton/CreditsTextureRect")
+	if credits.visible:
+		credits.visible = false
+	else:
+		credits.visible = true
+	#get_node("CreditsButton/CreditsTextureRect").visible = true
