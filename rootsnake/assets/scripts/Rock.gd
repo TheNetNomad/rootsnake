@@ -4,6 +4,7 @@ extends Area2D
 var direction = -1
 var tilemap = "../TileMap"
 var camera = "../Camera2D"
+var score = "../Camera2D/ScoreDisplay"
 var death_countdown = 1
 
 onready var sprite = $Sprite
@@ -97,5 +98,6 @@ func _on_FallOnArea_area_entered(area):
 	elif "Rock" in area.name:
 		begin_break()
 		area.begin_break()
-	elif "Rabbit" in area.name:
+	elif "Rabbit" in area.name and area.death_countdown == 1:
 		area.crush()
+		get_node(score).add_score(1000)

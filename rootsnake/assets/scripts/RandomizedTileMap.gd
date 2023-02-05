@@ -41,15 +41,19 @@ func generate_row(y):
 			set_cell(x,y,0)
 			if x in [0,WIDTH_IN_TILES-1]:
 				set_cell(x,y,1)
+
 		for i in range(random.randi_range(1,5)):
-			var tile_x = random.randi_range(0,WIDTH_IN_TILES-1)
-			set_cell(tile_x,y,1)
+			var tile_x = random.randi_range(1,WIDTH_IN_TILES-1)
+			if can_place_wall_here(tile_x,y):
+				set_cell(tile_x,y,1)
 
 	elif row_type == 4: #rock:
 		for x in range(WIDTH_IN_TILES):
-			set_cell(x,y,random.randi_range(0,1))
+			set_cell(x,y,0)
+			set_cell(x,y+1,0)
 			if x in [0,WIDTH_IN_TILES-1]:
 				set_cell(x,y,1)
+				set_cell(x,y+1,1)
 
 		var rock = load("res://assets/scenes/Rock.tscn").instance()
 		rock.position.x = TILE_SIZE * random.randi_range(2,WIDTH_IN_TILES-2) + (TILE_SIZE / 2)
@@ -95,3 +99,16 @@ func generate_row(y):
 		for i in range(random.randi_range(1,5)):
 			var tile_x = random.randi_range(1,WIDTH_IN_TILES-2)
 			set_cell(tile_x,y,2)
+
+func can_place_wall_here(X,Y):
+	var tile_position = Vector2(X * TILE_SIZE, Y * TILE_SIZE)
+#	var local_position:Vector2 = to_local(tile_position)
+	var cell_position:Vector2 = tile_position/cell_size
+
+	cell_position.y -= 1
+	cell_position.x -= 1
+	if get_cellv(cell_position) != 1:
+		cell_position.x += 2
+		if get_cellv(cell_position) != 1:
+			return true
+	return false
