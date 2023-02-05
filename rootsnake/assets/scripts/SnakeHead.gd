@@ -56,24 +56,38 @@ func move():
 		position.x -= MOVE_SPEED
 
 func turn():
-	
-	if direction == 0 and new_direction == 0 or direction == 2 and new_direction == 2:
+
+	if new_direction == 0:
+		$Sprite.rotation_degrees = 180
+	if new_direction == 1:
+		$Sprite.rotation_degrees = 270
+	if new_direction == 2:
 		$Sprite.rotation_degrees = 0
-	if direction == 1 and new_direction == 1 or direction == 3 and new_direction == 3:
+	if new_direction == 3:
 		$Sprite.rotation_degrees = 90
-	if direction == 0 and new_direction == 1 or direction == 1 and new_direction == 0:
-		$Sprite.rotation_degrees = 45
-	if direction == 1 and new_direction == 2 or direction == 2 and new_direction == 1:
-		$Sprite.rotation_degrees = 135
-	if direction == 2 and new_direction == 3 or direction == 3 and new_direction == 2:
-		$Sprite.rotation_degrees = 225
-	if direction == 3 and new_direction == 0 or direction == 0 and new_direction == 3:
-		$Sprite.rotation_degrees = 315
 
 func place_segment(first_call = false):
 	var segment = load("res://assets/scenes/SnakeSegment.tscn").instance()
 	segment.position = position
-	segment.get_child(0).rotation = $Sprite.rotation
+#	segment.get_child(0).rotation = $Sprite.rotation
+
+	if direction == 0 and new_direction == 0 or direction == 2 and new_direction == 2:
+		segment.rotation_degrees = 0
+	if direction == 1 and new_direction == 1 or direction == 3 and new_direction == 3:
+		segment.rotation_degrees = 90
+	
+	if direction == 0 and new_direction == 1 or direction == 3 and new_direction == 2:
+		segment.get_child(0).texture = load('res://assets/sprites/rootsnake_turn_1.png')
+		segment.rotation_degrees = 90
+	if direction == 1 and new_direction == 2 or direction == 0 and new_direction == 3:
+		segment.get_child(0).texture = load('res://assets/sprites/rootsnake_turn_1.png')
+		segment.rotation_degrees = 180
+	if direction == 2 and new_direction == 3 or direction == 1 and new_direction == 0:
+		segment.get_child(0).texture = load('res://assets/sprites/rootsnake_turn_1.png')
+		segment.rotation_degrees = 270
+	if direction == 3 and new_direction == 0 or direction == 2 and new_direction == 1:
+		segment.get_child(0).texture = load('res://assets/sprites/rootsnake_turn_1.png')
+		segment.rotation_degrees = 0
 
 	if first_call:
 		get_parent().call_deferred("add_child",segment)
