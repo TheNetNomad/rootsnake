@@ -25,6 +25,7 @@ func _on_QuitButton_pressed():
 
 
 func _on_CreditsButton_pressed():
+	$AudioStreamPlayerBell.play()
 	var credits = get_node("CreditsButton/CreditsTextureRect")
 	if credits.visible:
 		credits.visible = false

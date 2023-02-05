@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/title screen.png" type="Texture" id=1]
 [ext_resource path="res://assets/title.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/scenes/Title.gd" type="Script" id=3]
 [ext_resource path="res://assets/credits.png" type="Texture" id=4]
+[ext_resource path="res://assets/ding.wav" type="AudioStream" id=5]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -26,6 +27,7 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+volume_db = -3.0
 autoplay = true
 
 [node name="StartButton" type="ToolButton" parent="."]
@@ -65,6 +67,9 @@ texture = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayerBell" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
