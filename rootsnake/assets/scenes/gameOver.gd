@@ -8,7 +8,11 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$ScoreLabel.text = str(Globals.globalScore)
+	if Globals.globalScore > Globals.highScore:
+		Globals.highScore = Globals.globalScore
+	$HiscoreLabel.text = str(Globals.highScore)
+	$CauseLabel.text = Globals.causeOfDeath
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

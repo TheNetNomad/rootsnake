@@ -39,5 +39,64 @@ __meta__ = {
 stream = ExtResource( 3 )
 autoplay = true
 
+[node name="ScoreLabel" type="Label" parent="."]
+anchor_left = 0.458
+anchor_top = 0.566
+anchor_right = 0.458
+anchor_bottom = 0.566
+margin_left = -14.992
+margin_top = -7.60004
+margin_right = 37.008
+margin_bottom = 16.4
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 5.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "123"
+uppercase = true
+max_lines_visible = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HiscoreLabel" type="Label" parent="."]
+anchor_left = 0.458
+anchor_top = 0.566
+anchor_right = 0.458
+anchor_bottom = 0.566
+margin_left = -18.992
+margin_top = 23.4
+margin_right = 33.008
+margin_bottom = 47.4
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 5.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "123"
+uppercase = true
+max_lines_visible = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CauseLabel" type="Label" parent="."]
+anchor_left = 0.458
+anchor_top = 0.566
+anchor_right = 0.458
+anchor_bottom = 0.566
+margin_left = -65.992
+margin_top = 64.4
+margin_right = -13.992
+margin_bottom = 88.4
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 5.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "this is the cause of death"
+max_lines_visible = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="pressed" from="TextureRect/QuitButton" to="." method="_on_QuitButton_pressed"]
 [connection signal="pressed" from="TextureRect/RetryButton" to="." method="_on_RetryButton_pressed"]

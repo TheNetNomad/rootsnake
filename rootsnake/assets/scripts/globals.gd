@@ -1,5 +1,8 @@
 extends Node
 
+var globalScore = 3000
+var highScore = 2000
+var causeOfDeath = "testing testing 123"
 
 # Declare member variables here. Examples:
 # var a = 2
