@@ -20,6 +20,8 @@ const FALLSPEED = 8
 
 func _ready():
 	random.randomize()
+	$AnimationPlayer.current_animation = "Default"
+	$AnimationPlayer.play()
 
 func _process(delta):
 	check_if_offscreen()
