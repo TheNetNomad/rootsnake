@@ -77,11 +77,15 @@ func dig():
 	var local_position:Vector2 = get_node(tilemap).to_local(position)
 	var cell_position:Vector2 = local_position/get_node(tilemap).cell_size
 
+	$Particles2D.emitting = true
 	if get_node(tilemap).get_cellv(cell_position) == 0: #NORMAL SOIL
 		get_node(tilemap).set_cellv(cell_position,-1)
 	elif get_node(tilemap).get_cellv(cell_position) == 2: #RICH SOIL
 		get_node(tilemap).set_cellv(cell_position,-1)
 		get_node(score).add_score(100)
+		$AudioStreamPlayer.play()
+	else:
+		$Particles2D.emitting = false
 
 func death(cause):
 	Globals.globalScore = int(get_node(score).text)
