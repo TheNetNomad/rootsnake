@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/sprites/bunnysheet5.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/rabbit.png" type="Texture" id=1]
 [ext_resource path="res://assets/scripts/Rabbit.gd" type="Script" id=2]
 [ext_resource path="res://assets/beep.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 15, 15 )
+extents = Vector2( 20, 20 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Default"
@@ -44,10 +44,9 @@ z_index = 2
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 2.5, 2.5 )
+scale = Vector2( 4, 4 )
 z_index = 1
 texture = ExtResource( 1 )
-region_enabled = true
 region_rect = Rect2( 28, 218, 25, 27 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

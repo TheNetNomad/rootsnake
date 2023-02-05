@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://assets/sprites/greystone.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/concrete.png" type="Texture" id=1]
 [ext_resource path="res://assets/scenes/SnakeHead.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/scripts/GameCamera.gd" type="Script" id=3]
 [ext_resource path="res://assets/scenes/Rock.tscn" type="PackedScene" id=4]
@@ -26,7 +26,7 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
-1/name = "greystone.png 1"
+1/name = "concrete.png 1"
 1/texture = ExtResource( 1 )
 1/tex_offset = Vector2( 0, 0 )
 1/modulate = Color( 1, 1, 1, 1 )
@@ -70,6 +70,7 @@ camera = NodePath("../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 512, 300 )
+z_index = 5
 current = true
 script = ExtResource( 3 )
 snakehead = NodePath("../SnakeHead")
