@@ -15,9 +15,9 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 9.0
-margin_top = 17.0
-margin_right = 1021.0
+margin_left = -128.0
+margin_top = 2.0
+margin_right = 1146.0
 margin_bottom = 603.0
 texture = ExtResource( 1 )
 stretch_mode = 1
@@ -31,38 +31,38 @@ volume_db = -2.0
 autoplay = true
 
 [node name="StartButton" type="ToolButton" parent="."]
-margin_left = 349.0
-margin_top = 238.0
-margin_right = 605.0
-margin_bottom = 329.0
+margin_left = 308.0
+margin_top = 230.0
+margin_right = 620.0
+margin_bottom = 321.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="QuitButton" type="ToolButton" parent="."]
-margin_left = 360.0
+margin_left = 314.0
 margin_top = 336.0
-margin_right = 616.0
-margin_bottom = 416.0
+margin_right = 630.0
+margin_bottom = 429.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CreditsButton" type="ToolButton" parent="."]
-margin_left = 355.0
-margin_top = 437.0
-margin_right = 615.0
-margin_bottom = 517.0
+margin_left = 317.0
+margin_top = 444.0
+margin_right = 620.0
+margin_bottom = 536.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CreditsTextureRect" type="TextureRect" parent="CreditsButton"]
 visible = false
-margin_left = -99.0
-margin_top = -235.0
-margin_right = 342.0
-margin_bottom = -10.0
+margin_left = -58.0
+margin_top = -234.0
+margin_right = 383.0
+margin_bottom = -9.0
 texture = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
