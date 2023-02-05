@@ -21,6 +21,11 @@ func _process(delta):
 		if death_countdown <= 0:
 			self.queue_free()
 
+	if direction == -1 or death_countdown < 1:
+		$AudioStreamPlayer.playing = false
+	elif $AudioStreamPlayer.playing == false:
+		$AudioStreamPlayer.playing = true
+
 	if death_countdown == 1:
 		if direction == 0:
 			position.y -= MOVE_SPEED
@@ -81,4 +86,4 @@ func _on_FallOnArea_area_entered(area):
 		begin_break()
 		area.begin_break()
 	elif "Rabbit" in area.name:
-		area.queue_free()
+		area.crush()

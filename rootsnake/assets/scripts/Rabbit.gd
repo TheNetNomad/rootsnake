@@ -10,6 +10,7 @@ onready var sprite = $Sprite
 var horizontal_direction = 0
 var direction = -1
 var moving = false
+var death_countdown = 1
 
 const TILE_SIZE = 64
 const TILE_OFFSET = 32
@@ -22,6 +23,9 @@ func _ready():
 
 func _process(delta):
 	check_if_offscreen()
+	if death_countdown != 1:
+		death_countdown -= delta
+		if death_countdown <= 0: self.queue_free()
 	if moving == false:
 		moving = true
 		turn()
@@ -70,3 +74,9 @@ func check_if_offscreen():
 func _on_Rabbit_area_entered(area):
 	if "Snake" in area.name:
 		get_node(snakehead).queue_free()
+
+func crush():
+	death_countdown = 0.5
+	$AudioStreamPlayer.play()
+	$Sprite.scale.y = -2.5
+	self.position.y += TILE_OFFSET
