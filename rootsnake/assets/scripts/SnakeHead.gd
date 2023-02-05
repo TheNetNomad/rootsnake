@@ -32,7 +32,7 @@ func _process(delta):
 		direction = new_direction
 
 		if check_for_death_tile(direction):
-			death()
+			death("wall")
 
 func get_direction():
 	if Input.is_action_pressed("ui_up") and direction != 2:
@@ -83,11 +83,13 @@ func dig():
 		get_node(tilemap).set_cellv(cell_position,-1)
 		get_node(score).add_score(100)
 
-func death():
+func death(cause):
+	Globals.globalScore = int(get_node(score).text)
+	Globals.causeOfDeath = cause
 	get_tree().change_scene("res://assets/scenes/gameOver.tscn")
 
 func _on_SnakeHead_area_entered(area):
 	if "SnakeSegment" in area.name and area.creation_cooldown <= 0:
-		death()
+		death("yourself")
 	elif "Rock" in area.name and area.death_countdown == 1:
 		area.push(direction)

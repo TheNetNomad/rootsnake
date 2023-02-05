@@ -75,7 +75,7 @@ func check_if_offscreen():
 
 func _on_Rabbit_area_entered(area):
 	if "Snake" in area.name and death_countdown == 1:
-		get_node(snakehead).death()
+		get_node(snakehead).death("rabbit")
 
 func crush():
 	if death_countdown == 1:
