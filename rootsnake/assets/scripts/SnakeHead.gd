@@ -13,6 +13,7 @@ const TILE_OFFSET = 32
 
 func _ready():
 	place_segment(true)
+	dig()
 
 func _process(delta):
 
@@ -25,6 +26,7 @@ func _process(delta):
 		position.y = int(position.y)
 
 		place_segment()
+		dig()
 
 		direction = new_direction
 
@@ -69,6 +71,15 @@ func check_for_death_tile(direction = 0):
 		return true
 	elif direction == 3 and get_node(tilemap).get_cell( (position.x/TILE_SIZE)-1 , (position.y/TILE_SIZE) ) == 1:
 		return true
+
+func dig():
+	var local_position:Vector2 = get_node(tilemap).to_local(position)
+	var cell_position:Vector2 = local_position/get_node(tilemap).cell_size
+
+	if get_node(tilemap).get_cellv(cell_position) == 0: #NORMAL SOIL
+		get_node(tilemap).set_cellv(cell_position,-1)
+	elif get_node(tilemap).get_cellv(cell_position) == 2: #RICH SOIL
+		get_node(tilemap).set_cellv(cell_position,-1)
 
 func _on_SnakeHead_area_entered(area):
 	if "SnakeSegment" in area.name and area.creation_cooldown <= 0:

@@ -4,6 +4,7 @@ extends Area2D
 var random = RandomNumberGenerator.new()
 var tilemap = "../TileMap"
 var snakehead = "../SnakeHead"
+var camera = "../Camera2D"
 onready var sprite = $Sprite
 
 var horizontal_direction = 0
@@ -13,12 +14,14 @@ var moving = false
 const TILE_SIZE = 64
 const TILE_OFFSET = 32
 const MOVESPEED = 2
+const FALLSPEED = 8
 
 
 func _ready():
 	random.randomize()
 
 func _process(delta):
+	check_if_offscreen()
 	if moving == false:
 		moving = true
 		turn()
@@ -47,7 +50,7 @@ func turn():
 
 func move():
 	if direction == 2:
-		self.position.y += MOVESPEED
+		self.position.y += FALLSPEED
 	elif direction == 1:
 		self.position.x += MOVESPEED
 	elif direction == 3:
@@ -60,6 +63,9 @@ func move():
 		moving = false
 		direction = -1
 
+func check_if_offscreen():
+	if self.position.y < get_node(camera).position.y - (get_viewport().size.y / 1.8):
+		self.queue_free()
 
 func _on_Rabbit_area_entered(area):
 	if "Snake" in area.name:

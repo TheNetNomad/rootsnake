@@ -3,6 +3,7 @@ extends Area2D
 
 var direction = -1
 var tilemap = "../TileMap"
+var camera = "../Camera2D"
 var death_countdown = 1
 
 onready var sprite = $Sprite
@@ -13,6 +14,8 @@ const TILE_SIZE = 64
 const TILE_OFFSET = 32
 
 func _process(delta):
+	check_if_offscreen()
+
 	if death_countdown < 1:
 		death_countdown -= delta
 		if death_countdown <= 0:
@@ -61,12 +64,17 @@ func begin_break():
 	sprite.visible = false
 	death_countdown = 0.5
 
+func check_if_offscreen():
+	if self.position.y < get_node(camera).position.y - (get_viewport().size.y / 1.8):
+		self.queue_free()
+
 func _on_Rock_area_entered(area):
 	if "Rock" in area.name or "SnakeSegment" in area.name:
 		begin_break()
 
 func _on_FallOnArea_area_entered(area):
-	direction = 2
+	if direction == -1:
+		direction = 2
 	if "SnakeHead" in area.name and death_countdown == 1:
 		area.queue_free()
 	elif "Rock" in area.name:
