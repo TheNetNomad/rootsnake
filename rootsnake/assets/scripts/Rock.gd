@@ -65,9 +65,11 @@ func push(new_direction):
 			begin_break()
 
 func begin_break():
-	particles.emitting = true
-	sprite.visible = false
-	death_countdown = 0.5
+	if death_countdown == 1:
+		particles.emitting = true
+		sprite.visible = false
+		$BreakStreamPlayer.play()
+		death_countdown = 0.5
 
 func check_if_offscreen():
 	if self.position.y < get_node(camera).position.y - (get_viewport().size.y / 1.8):
