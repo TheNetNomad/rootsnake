@@ -129,3 +129,11 @@ func _on_FallOnArea_area_entered(area):
 	elif "Rabbit" in area.name and area.death_countdown == 1:
 		area.crush()
 		get_node(score).add_score(1000)
+
+func set_alternate(sprite):
+	if sprite == 1:
+		$Sprite.texture = load('res://assets/sprites/Rock_2.png')
+		$Sprite.scale = Vector2(0.5,0.5)
+	elif sprite == 2:
+		$Sprite.texture = load('res://assets/sprites/Rock_3.png')
+		$Sprite.scale = Vector2(0.5,0.5)
