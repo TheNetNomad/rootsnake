@@ -38,7 +38,7 @@ func _process(delta):
 			position.y += MOVE_SPEED
 		elif direction == 3:
 			position.x -= MOVE_SPEED
-	
+
 	if has_reached_tile():
 		position.x = target_x
 		position.y = target_y
@@ -123,12 +123,15 @@ func _on_Rock_area_entered(area):
 func _on_FallOnArea_area_entered(area):
 	if direction == -1:
 		direction = 2
-	elif "Rock" in area.name:
+		update_targets()
+	if "Rock" in area.name:
 		begin_break()
 		area.begin_break()
 	elif "Rabbit" in area.name and area.death_countdown == 1:
 		area.crush()
 		get_node(score).add_score(1000)
+#	elif area.name == "SnakeHead":
+#		area.death("rock")
 
 func set_alternate(sprite):
 	if sprite == 1:
