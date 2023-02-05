@@ -48,11 +48,11 @@ func turn():
 		cell_position.x -= 1
 		if horizontal_direction == 1 and get_node(tilemap).get_cellv( cell_position ) == -1:
 			direction = 3
-			sprite.scale.x = -2.5
+			sprite.scale.x = -4
 		cell_position.x += 2
 		if horizontal_direction == 2 and get_node(tilemap).get_cellv( cell_position ) == -1:
 			direction = 1
-			sprite.scale.x = 2.5
+			sprite.scale.x = 4
 
 func move():
 	if direction == 2:
@@ -81,5 +81,5 @@ func crush():
 	if death_countdown == 1:
 		death_countdown = 0.5
 		$AudioStreamPlayer.play()
-		$Sprite.scale.y = -2.5
+		$Sprite.scale.y = -4
 		self.position.y += TILE_OFFSET
