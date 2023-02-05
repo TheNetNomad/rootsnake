@@ -12,7 +12,7 @@ var target_y = position.y
 onready var sprite = $Sprite
 onready var particles = $Particles2D
 
-const MOVE_SPEED = 14
+const MOVE_SPEED = 10
 const TILE_SIZE = 64
 const TILE_OFFSET = 32
 
