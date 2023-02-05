@@ -74,11 +74,12 @@ func check_if_offscreen():
 		self.queue_free()
 
 func _on_Rabbit_area_entered(area):
-	if "Snake" in area.name:
+	if "Snake" in area.name and death_countdown == 1:
 		get_node(snakehead).queue_free()
 
 func crush():
-	death_countdown = 0.5
-	$AudioStreamPlayer.play()
-	$Sprite.scale.y = -2.5
-	self.position.y += TILE_OFFSET
+	if death_countdown == 1:
+		death_countdown = 0.5
+		$AudioStreamPlayer.play()
+		$Sprite.scale.y = -2.5
+		self.position.y += TILE_OFFSET

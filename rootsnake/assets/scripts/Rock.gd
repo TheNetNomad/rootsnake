@@ -40,7 +40,8 @@ func _process(delta):
 		position.x = int(position.x)
 		position.y = int(position.y)
 		direction = -1
-		
+		dig()
+
 		if check_for_fall(): direction = 2
 
 func check_for_death_tile(direction = 0):
@@ -74,6 +75,15 @@ func begin_break():
 func check_if_offscreen():
 	if self.position.y < get_node(camera).position.y - (get_viewport().size.y / 1.8):
 		self.queue_free()
+
+func dig():
+	var local_position:Vector2 = get_node(tilemap).to_local(position)
+	var cell_position:Vector2 = local_position/get_node(tilemap).cell_size
+
+	if get_node(tilemap).get_cellv(cell_position) == 0: #NORMAL SOIL
+		get_node(tilemap).set_cellv(cell_position,-1)
+	elif get_node(tilemap).get_cellv(cell_position) == 2: #RICH SOIL
+		get_node(tilemap).set_cellv(cell_position,-1)
 
 func _on_Rock_area_entered(area):
 	if "Rock" in area.name or "SnakeSegment" in area.name:
