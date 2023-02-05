@@ -1,10 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/scripts/ScoreDisplay.gd" type="Script" id=1]
+[ext_resource path="res://assets/font/rootsnake_score.fnt" type="BitmapFont" id=2]
+
+[sub_resource type="Theme" id=1]
+Label/fonts/font = ExtResource( 2 )
 
 [node name="ScoreDisplay" type="Label"]
 margin_right = 40.0
 margin_bottom = 14.0
+theme = SubResource( 1 )
 text = "0"
 script = ExtResource( 1 )
 __meta__ = {
