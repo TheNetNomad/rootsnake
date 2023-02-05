@@ -89,12 +89,12 @@ func dig():
 func _on_Rock_area_entered(area):
 	if "Rock" in area.name or "SnakeSegment" in area.name:
 		begin_break()
+	if "SnakeHead" in area.name and death_countdown == 1 and direction == 2:
+		area.death()
 
 func _on_FallOnArea_area_entered(area):
 	if direction == -1:
 		direction = 2
-	if "SnakeHead" in area.name and death_countdown == 1:
-		area.queue_free()
 	elif "Rock" in area.name:
 		begin_break()
 		area.begin_break()

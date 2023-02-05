@@ -5,6 +5,7 @@ var direction = 2
 var new_direction = direction
 
 export(NodePath) var tilemap
+var score = '../Camera2D/ScoreDisplay'
 
 const MOVE_SPEED = 4
 const TILE_SIZE = 64
@@ -31,7 +32,7 @@ func _process(delta):
 		direction = new_direction
 
 		if check_for_death_tile(direction):
-			self.queue_free()
+			death()
 
 func get_direction():
 	if Input.is_action_pressed("ui_up") and direction != 2:
@@ -80,9 +81,13 @@ func dig():
 		get_node(tilemap).set_cellv(cell_position,-1)
 	elif get_node(tilemap).get_cellv(cell_position) == 2: #RICH SOIL
 		get_node(tilemap).set_cellv(cell_position,-1)
+		get_node(score).add_score(100)
+
+func death():
+	get_tree().change_scene("res://assets/scenes/gameOver.tscn")
 
 func _on_SnakeHead_area_entered(area):
 	if "SnakeSegment" in area.name and area.creation_cooldown <= 0:
-		self.queue_free()
+		death()
 	elif "Rock" in area.name and area.death_countdown == 1:
 		area.push(direction)
