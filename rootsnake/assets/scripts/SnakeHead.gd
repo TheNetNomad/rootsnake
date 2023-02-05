@@ -26,6 +26,7 @@ func _process(delta):
 		position.x = int(position.x)
 		position.y = int(position.y)
 
+		turn()
 		place_segment()
 		dig()
 
@@ -54,9 +55,25 @@ func move():
 	elif direction == 3:
 		position.x -= MOVE_SPEED
 
+func turn():
+	
+	if direction == 0 and new_direction == 0 or direction == 2 and new_direction == 2:
+		$Sprite.rotation_degrees = 0
+	if direction == 1 and new_direction == 1 or direction == 3 and new_direction == 3:
+		$Sprite.rotation_degrees = 90
+	if direction == 0 and new_direction == 1 or direction == 1 and new_direction == 0:
+		$Sprite.rotation_degrees = 45
+	if direction == 1 and new_direction == 2 or direction == 2 and new_direction == 1:
+		$Sprite.rotation_degrees = 135
+	if direction == 2 and new_direction == 3 or direction == 3 and new_direction == 2:
+		$Sprite.rotation_degrees = 225
+	if direction == 3 and new_direction == 0 or direction == 0 and new_direction == 3:
+		$Sprite.rotation_degrees = 315
+
 func place_segment(first_call = false):
 	var segment = load("res://assets/scenes/SnakeSegment.tscn").instance()
 	segment.position = position
+	segment.get_child(0).rotation = $Sprite.rotation
 
 	if first_call:
 		get_parent().call_deferred("add_child",segment)
