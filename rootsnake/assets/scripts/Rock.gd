@@ -87,7 +87,7 @@ func dig():
 		get_node(tilemap).set_cellv(cell_position,-1)
 
 func _on_Rock_area_entered(area):
-	if "Rock" in area.name or "SnakeSegment" in area.name:
+	if "Rock" in area.name or "SnakeSegment" in area.name and area.creation_cooldown <= 0:
 		begin_break()
 	if "SnakeHead" in area.name and death_countdown == 1 and direction == 2:
 		area.death("rock")
