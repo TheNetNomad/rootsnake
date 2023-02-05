@@ -7,7 +7,11 @@ var new_direction = direction
 export(NodePath) var tilemap
 var score = '../Camera2D/ScoreDisplay'
 
-const MOVE_SPEED = 4
+var target_x = 0
+var target_y = 0
+
+var MOVE_SPEED = 4
+var next_move_speed_target_score = 1000
 const TILE_SIZE = 64
 const TILE_OFFSET = 32
 
@@ -16,24 +20,55 @@ func _ready():
 	place_segment(true)
 	dig()
 
+	target_x = self.position.x
+	target_y = 96
+
 func _process(delta):
 
 	get_direction()
 
 	move()
 
-	if int(position.x) % TILE_SIZE-TILE_OFFSET == 0 and int(position.y) % TILE_SIZE-TILE_OFFSET == 0:
-		position.x = int(position.x)
-		position.y = int(position.y)
+
+	if get_node(score).score > next_move_speed_target_score:
+		next_move_speed_target_score *= 3
+		MOVE_SPEED += 1
+
+	if has_reached_tile():
+		position.x = target_x
+		position.y = target_y
 
 		turn()
 		place_segment()
 		dig()
 
 		direction = new_direction
+		if direction == 0:
+			target_y = position.y - 64
+			target_x = position.x
+		elif direction == 1:
+			target_y = position.y
+			target_x = position.x + 64
+		elif direction == 2:
+			target_y = position.y + 64
+			target_x = position.x
+		elif direction == 3:
+			target_y = position.y
+			target_x = position.x - 64
 
 		if check_for_death_tile(direction):
 			death("wall")
+
+func has_reached_tile():
+	if direction == 0 and position.y <= target_y:
+		return true
+	if direction == 1 and position.x >= target_x:
+		return true
+	if direction == 2 and position.y >= target_y:
+		return true
+	if direction == 3 and position.x <= target_x:
+		return true
+	return false
 
 func get_direction():
 	if Input.is_action_pressed("ui_up") and direction != 2:

@@ -6,11 +6,13 @@ var tilemap = "../TileMap"
 var camera = "../Camera2D"
 var score = "../Camera2D/ScoreDisplay"
 var death_countdown = 1
+var target_x = position.x
+var target_y = position.y
 
 onready var sprite = $Sprite
 onready var particles = $Particles2D
 
-const MOVE_SPEED = 8
+const MOVE_SPEED = 14
 const TILE_SIZE = 64
 const TILE_OFFSET = 32
 
@@ -37,13 +39,15 @@ func _process(delta):
 		elif direction == 3:
 			position.x -= MOVE_SPEED
 	
-	if int(position.x) % TILE_SIZE-TILE_OFFSET == 0 and int(position.y) % TILE_SIZE-TILE_OFFSET == 0:
-		position.x = int(position.x)
-		position.y = int(position.y)
+	if has_reached_tile():
+		position.x = target_x
+		position.y = target_y
 		direction = -1
 		dig()
 
-		if check_for_fall(): direction = 2
+		if check_for_fall():
+			direction = 2
+			update_targets()
 
 func check_for_death_tile(direction = 0):
 	if direction == 0 and get_node(tilemap).get_cell( (position.x/TILE_SIZE) , (position.y/TILE_SIZE)-1 ) == 1:
@@ -62,6 +66,7 @@ func check_for_fall():
 func push(new_direction):
 	if direction == -1:
 		direction = new_direction
+		update_targets()
 	
 		if check_for_death_tile(direction) == true:
 			begin_break()
@@ -85,6 +90,29 @@ func dig():
 		get_node(tilemap).set_cellv(cell_position,-1)
 	elif get_node(tilemap).get_cellv(cell_position) == 2: #RICH SOIL
 		get_node(tilemap).set_cellv(cell_position,-1)
+
+func has_reached_tile():
+	if direction == 0 and position.y <= target_y:
+		return true
+	if direction == 1 and position.x >= target_x:
+		return true
+	if direction == 2 and position.y >= target_y:
+		return true
+	if direction == 3 and position.x <= target_x:
+		return true
+	return false
+
+func update_targets():
+	target_x = position.x
+	target_y = position.y
+	if direction == 0:
+		target_y -= 64
+	if direction == 1:
+		target_x += 64
+	if direction == 2:
+		target_y += 64
+	if direction == 3:
+		target_x -= 64
 
 func _on_Rock_area_entered(area):
 	if "Rock" in area.name or "SnakeSegment" in area.name and area.creation_cooldown <= 0:
