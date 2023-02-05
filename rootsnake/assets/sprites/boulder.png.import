@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rich dirt.png-1b4faf099a68a809bd85304a67aaed75.stex"
+path="res://.import/boulder.png-46edb0e38d719d8d919df512e9858a29.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/rich dirt.png"
-dest_files=[ "res://.import/rich dirt.png-1b4faf099a68a809bd85304a67aaed75.stex" ]
+source_file="res://assets/sprites/boulder.png"
+dest_files=[ "res://.import/boulder.png-46edb0e38d719d8d919df512e9858a29.stex" ]
 
 [params]
 

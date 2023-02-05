@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rich dirt.png-1b4faf099a68a809bd85304a67aaed75.stex"
+path="res://.import/rootsnake_down.png-bc2d02b2404477db8b5d0c152f7e9b98.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/rich dirt.png"
-dest_files=[ "res://.import/rich dirt.png-1b4faf099a68a809bd85304a67aaed75.stex" ]
+source_file="res://assets/sprites/rootsnake_down.png"
+dest_files=[ "res://.import/rootsnake_down.png-bc2d02b2404477db8b5d0c152f7e9b98.stex" ]
 
 [params]
 

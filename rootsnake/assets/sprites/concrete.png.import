@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rich dirt.png-1b4faf099a68a809bd85304a67aaed75.stex"
+path="res://.import/concrete.png-757d7bbfe16342bc44207a4a55399e4a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/rich dirt.png"
-dest_files=[ "res://.import/rich dirt.png-1b4faf099a68a809bd85304a67aaed75.stex" ]
+source_file="res://assets/sprites/concrete.png"
+dest_files=[ "res://.import/concrete.png-757d7bbfe16342bc44207a4a55399e4a.stex" ]
 
 [params]
 
